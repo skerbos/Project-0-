@@ -42,7 +42,12 @@ public class PlayerControl : MonoBehaviour
     {
         if(rb.velocity.magnitude > maxSpeed)
         {
-            rb.velocity= rb.velocity.normalized * maxSpeed;
+            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        rb.AddForce(collision.contacts[0].normal * 500f);
     }
 }

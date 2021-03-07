@@ -225,8 +225,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23930407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: 15, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -7.5, z: 0}
+  m_LocalScale: {x: 25, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -394,8 +394,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345033861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.5, z: 0}
-  m_LocalScale: {x: 15, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 17.5, z: 0}
+  m_LocalScale: {x: 25, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -453,7 +453,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -708,8 +708,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056389239}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 7.5, y: 5, z: 0}
-  m_LocalScale: {x: 15, y: 0.5, z: 1}
+  m_LocalPosition: {x: 12.5, y: 5, z: 0}
+  m_LocalScale: {x: 25, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -822,6 +822,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5078c5e992a7fcb47968276307832a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rifleMaterial: {fileID: 2100000, guid: 2185a9154558b3f479fb6be78e0e9540, type: 2}
+  sniperMaterial: {fileID: 2100000, guid: 5051903ac31cec045b64f6e90750776f, type: 2}
+  shotgunMaterial: {fileID: 2100000, guid: 9cf842cc4da3fc34aabcb4fcc4fd9157, type: 2}
   player: {fileID: 1662312849}
   bullet: {fileID: 7408472080432915354, guid: a58460eaa7ec87646a2d343f41ee8aa8, type: 3}
 --- !u!1 &1662312849
@@ -961,7 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 981422151}
   bullet: {fileID: 7408472080432915354, guid: a58460eaa7ec87646a2d343f41ee8aa8, type: 3}
-  maxSpeed: 10
+  maxSpeed: 20
 --- !u!1 &1949567433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,8 +1067,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949567433}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -7.5, y: 5, z: 0}
-  m_LocalScale: {x: 15, y: 0.5, z: 1}
+  m_LocalPosition: {x: -12.5, y: 5, z: 0}
+  m_LocalScale: {x: 25, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4

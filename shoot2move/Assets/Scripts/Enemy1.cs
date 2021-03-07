@@ -38,4 +38,5 @@ public class Enemy1 : MonoBehaviour
     {
         rb.AddForce(transform.up * moveForce);
     }
+
 }
