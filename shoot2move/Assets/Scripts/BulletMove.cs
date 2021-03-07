@@ -5,14 +5,17 @@ using UnityEngine;
 public class BulletMove : MonoBehaviour
 {
     
-    private Rigidbody rb;
+    private Rigidbody2D rb;
+    private GameObject playerGun;
     public float moveForce = 200f;
-    public float maxSpeed = 10f;
+    private float maxSpeed;
     
     // Start is called before the first frame update
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody>();
+        rb = transform.GetComponent<Rigidbody2D>();
+        playerGun = GameObject.FindWithTag("PlayerGun");
+        maxSpeed = playerGun.GetComponent<GunControl>().currentWeapon.bulletSpeed;
     }
 
     // Update is called once per frame
@@ -23,13 +26,12 @@ public class BulletMove : MonoBehaviour
 
     void FixedUpdate()
     {
- 
         LimitMaxSpeed();
     }
 
     void Move()
     {
-        rb.AddForce(-transform.up * moveForce);
+        rb.AddForce(-transform.up * moveForce, ForceMode2D.Impulse);
     }
 
     void LimitMaxSpeed()
@@ -38,5 +40,16 @@ public class BulletMove : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Yes");
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity.normalized * 0;
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerGun.GetComponent<GunControl>().currentWeapon.bulletForce);
+        }
+        Destroy(gameObject);
     }
 }

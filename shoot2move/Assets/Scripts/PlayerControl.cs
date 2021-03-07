@@ -5,25 +5,23 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
        
-    private Vector3 mousePos;
-    private Vector3 gunPos;
-    private Rigidbody rb;
+    private Vector2 mousePos;
+    private Vector2 gunPos;
+    private Rigidbody2D rb;
     public GameObject gun;
     public GameObject bullet;
-    public float recoilForce = 200f;
     public float maxSpeed = 1000f;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody>();
+        rb = transform.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         MouseLook();
-        Shoot();
     }
 
     void FixedUpdate()
@@ -38,15 +36,6 @@ public class PlayerControl : MonoBehaviour
         Vector3 aimDir = gunPos - mousePos;
         float dirAngle = Mathf.Atan2(aimDir.y,aimDir.x) * Mathf.Rad2Deg;
         gun.transform.rotation = Quaternion.Euler(0,0,dirAngle-90);
-    }
-
-    void Shoot()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            rb.AddForce(gun.transform.up * recoilForce);
-            Instantiate(bullet, gun.transform.position, gun.transform.rotation);
-        }
     }
 
     void LimitMaxSpeed()

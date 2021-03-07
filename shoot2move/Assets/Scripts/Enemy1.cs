@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy1 : MonoBehaviour
 {
-    private Vector3 playerPos;
-    private Rigidbody rb;
+    private Vector2 playerPos;
+    private Vector2 selfPos;
+    private Rigidbody2D rb;
     public GameObject player;
     public float moveForce = 10f;
     public float maxSpeed = 2f;
@@ -13,7 +14,7 @@ public class Enemy1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody>();
+        rb = transform.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -25,8 +26,9 @@ public class Enemy1 : MonoBehaviour
 
     void TrackPlayer()
     {
-        playerPos = player.transform.position;
-        Vector3 playerDir = playerPos - transform.position;
+        playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
+        selfPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 playerDir = playerPos - selfPos;
         float playerAngle = Mathf.Atan2(playerDir.y, playerDir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0,0,playerAngle-90);
 
