@@ -10,12 +10,14 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject gun;
     public GameObject bullet;
+    public bool positionLock; 
     public float maxSpeed = 1000f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = transform.GetComponent<Rigidbody2D>();
+        positionLock = false;
     }
 
     // Update is called once per frame
@@ -26,7 +28,14 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        LimitMaxSpeed();
+        if (Input.GetMouseButton(1))
+        {
+            LockPosition();
+        }
+        else
+        {
+            LimitMaxSpeed();
+        }
     }
 
     void MouseLook()
@@ -40,10 +49,17 @@ public class PlayerControl : MonoBehaviour
 
     void LimitMaxSpeed()
     {
+        positionLock = false;
         if(rb.velocity.magnitude > maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+    }
+
+    void LockPosition()
+    {
+        positionLock = true;
+        rb.velocity = rb.velocity.normalized * 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

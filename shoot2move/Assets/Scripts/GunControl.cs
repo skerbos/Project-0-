@@ -26,16 +26,16 @@ public class GunControl : MonoBehaviour
             this.bulletsPerShot = bulletsPerShot; // number of bullet on 1 shot
             this.mat = mat; // color of gun
         }
-    }
 
+    }
 
     private List<GunType> gunList;
     public Material rifleMaterial;
     public Material sniperMaterial;
     public Material shotgunMaterial;
-    public GunType rifle = new GunType("rifle", 200f, 20f, 3.5f, 100f, 10f, 1, null);
+    public GunType rifle = new GunType("rifle", 100f, 20f, 3.5f, 100f, 10f, 1, null);
     public GunType sniper = new GunType("sniper", 1000f, 50f, 0f, 500f, 1f, 1, null);
-    public GunType shotgun = new GunType("shotgun", 700f, 30f, 15f, 80f, 3f, 7, null);
+    public GunType shotgun = new GunType("shotgun", 500f, 30f, 15f, 50f, 3f, 7, null);
     public GunType currentWeapon;
     public GameObject player;
     public GameObject bullet;
@@ -89,12 +89,13 @@ public class GunControl : MonoBehaviour
 
     void Shoot()
     {
+        if (player.GetComponent<PlayerControl>().positionLock == false)
         {
             player.GetComponent<Rigidbody2D>().AddForce(transform.up * currentWeapon.recoilForce);
-            for (int i = 0; i < currentWeapon.bulletsPerShot; i++)
-            {
-                Instantiate(bullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, Random.Range(-currentWeapon.bulletSpread, currentWeapon.bulletSpread)));
-            }
+        }
+        for (int i = 0; i < currentWeapon.bulletsPerShot; i++)
+        {
+            Instantiate(bullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, Random.Range(-currentWeapon.bulletSpread, currentWeapon.bulletSpread)));
         }
     }
 }
