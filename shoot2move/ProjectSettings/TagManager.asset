@@ -7,6 +7,8 @@ TagManager:
   - PlayerBullet
   - PlayerGun
   - Enemy
+  - EnemyBullet
+  - Canvas
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Player
   - PlayerProjectile
   - Enemy
-  - 
+  - EnemyBullet
   - 
   - 
   - 

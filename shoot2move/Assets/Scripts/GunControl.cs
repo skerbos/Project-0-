@@ -4,98 +4,79 @@ using UnityEngine;
 
 public class GunControl : MonoBehaviour
 {
-    public class GunType
-    {
-        public string gunName;
-        public float recoilForce;
-        public float bulletSpeed;
-        public float bulletSpread;
-        public float bulletForce;
-        public float rateOfFire;
-        public int bulletsPerShot;
-        public Material mat;
-
-        public GunType(string gunName, float recoilForce, float bulletSpeed, float bulletSpread, float bulletForce, float rateOfFire, int bulletsPerShot, Material mat)
-        {
-            this.gunName = gunName;
-            this.recoilForce = recoilForce;
-            this.bulletSpeed = bulletSpeed; // should link to maxSpeed in BulletMove script
-            this.bulletSpread = bulletSpread; // bullet spread in degrees
-            this.bulletForce = bulletForce; // force bullet exerts on enemy
-            this.rateOfFire = rateOfFire; // bullets per second?
-            this.bulletsPerShot = bulletsPerShot; // number of bullet on 1 shot
-            this.mat = mat; // color of gun
-        }
-
-    }
-
-    private List<GunType> gunList;
-    public Material rifleMaterial;
-    public Material sniperMaterial;
-    public Material shotgunMaterial;
-    public GunType rifle = new GunType("rifle", 100f, 20f, 3.5f, 100f, 10f, 1, null);
-    public GunType sniper = new GunType("sniper", 1000f, 50f, 0f, 500f, 1f, 1, null);
-    public GunType shotgun = new GunType("shotgun", 500f, 30f, 15f, 50f, 3f, 7, null);
-    public GunType currentWeapon;
-    public GameObject player;
+    private List<WeaponClasses.BasicGun> gunList;
+    private float nextFire;
+    private GameObject player;
+    private GameObject playerGun;
+    public WeaponClasses.BasicGun rifle = new WeaponClasses.BasicGun("rifle", 5f, 5f, 20f, 3.5f, 150f, 10f, 1, 12f, Color.blue);
+    public WeaponClasses.BasicGun sniper = new WeaponClasses.BasicGun("sniper", 1000f, 20f, 50f, 0f, 1000f, 1f, 1, 30f, Color.green);
+    public WeaponClasses.BasicGun shotgun = new WeaponClasses.BasicGun("shotgun", 200f, 3f, 30f, 15f, 200f, 3f, 7, 10f, Color.red);
+    public Color rifleMaterial;
+    public Color sniperMaterial;
+    public Color shotgunMaterial;
+    public WeaponClasses.BasicGun currentWeapon;
     public GameObject bullet;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        gunList = new List<GunType>()
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerGun = GameObject.FindGameObjectWithTag("PlayerGun");
+        nextFire = Time.time;
+
+        gunList = new List<WeaponClasses.BasicGun>()
                     {
                         rifle,
                         sniper,
                         shotgun
                     };
 
-        this.rifle.mat = rifleMaterial;
-        this.sniper.mat = sniperMaterial;
-        this.shotgun.mat = shotgunMaterial;
+        this.rifle.color = rifleMaterial;
+        this.sniper.color = sniperMaterial;
+        this.shotgun.color = shotgunMaterial;
 
         currentWeapon = this.rifle;
-        GetComponent<Renderer>().material = currentWeapon.mat;
+        GetComponent<SpriteRenderer>().color = currentWeapon.color;
+
+        SetPlayerMaxSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            InvokeRepeating("Shoot", 0.001f, (1 / currentWeapon.rateOfFire));
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            CancelInvoke();
-        }
-
         WeaponSelection();
     }
 
+    void FixedUpdate()
+    {
+        Shoot();
+    }
     void WeaponSelection()
     {
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             currentWeapon = gunList[gunList.IndexOf(currentWeapon) + 1];
+            SetPlayerMaxSpeed();
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             currentWeapon = gunList[gunList.IndexOf(currentWeapon) - 1];
+            SetPlayerMaxSpeed();
         }
-        GetComponent<Renderer>().material = currentWeapon.mat;
+        GetComponent<SpriteRenderer>().color = currentWeapon.color;
     }
 
     void Shoot()
     {
-        if (player.GetComponent<PlayerControl>().positionLock == false)
+        if(Input.GetMouseButton(0) && Time.time > nextFire)
         {
-            player.GetComponent<Rigidbody2D>().AddForce(transform.up * currentWeapon.recoilForce);
+            currentWeapon.Shoot(player, playerGun, bullet);
+            nextFire = Time.time + (1 / currentWeapon.rateOfFire);
         }
-        for (int i = 0; i < currentWeapon.bulletsPerShot; i++)
-        {
-            Instantiate(bullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, Random.Range(-currentWeapon.bulletSpread, currentWeapon.bulletSpread)));
-        }
+    }
+    void SetPlayerMaxSpeed()
+    {
+        player.GetComponent<PlayerControl>().maxSpeed = currentWeapon.playerMaxSpeed;
     }
 }
