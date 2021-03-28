@@ -40,7 +40,7 @@ public class WeaponClasses : MonoBehaviour
         {
             if (player.GetComponent<PlayerControl>().positionLock == false)
             {
-                player.GetComponent<Rigidbody2D>().AddForce(playerGun.transform.up * recoilForce, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(-playerGun.transform.right * recoilForce, ForceMode2D.Impulse);
             }
             for (int i = 0; i < bulletsPerShot; i++)
             {

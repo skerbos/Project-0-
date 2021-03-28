@@ -34,7 +34,7 @@ public class Enemy3 : MonoBehaviour
             {
                 Instantiate(enemyBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, i*(360f/bulletsPerShot)));
             }
-            nextFire = Time.time + 0.5f;
+            nextFire = Time.time + 1.5f;
         }
     }
 

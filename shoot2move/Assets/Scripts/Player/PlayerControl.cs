@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject bullet;
     public bool positionLock; 
     public float maxSpeed = 1000f;
+    public float dirAngle;
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +43,9 @@ public class PlayerControl : MonoBehaviour
     {
         mousePos = Input.mousePosition;
         gunPos = Camera.main.WorldToScreenPoint(gun.transform.position);
-        Vector3 aimDir = gunPos - mousePos;
-        float dirAngle = Mathf.Atan2(aimDir.y,aimDir.x) * Mathf.Rad2Deg;
-        gun.transform.rotation = Quaternion.Euler(0,0,dirAngle-90);
+        Vector3 aimDir = mousePos - gunPos;
+        dirAngle = Mathf.Atan2(aimDir.y,aimDir.x) * Mathf.Rad2Deg;
+        gun.transform.rotation = Quaternion.Euler(0,0,dirAngle);
     }
 
     void LimitMaxSpeed()

@@ -8,9 +8,9 @@ public class GunControl : MonoBehaviour
     private float nextFire;
     private GameObject player;
     private GameObject playerGun;
-    public WeaponClasses.BasicGun rifle = new WeaponClasses.BasicGun("rifle", 5f, 5f, 25f, 3.5f, 170f, 10f, 1, 12f, Color.blue);
-    public WeaponClasses.BasicGun sniper = new WeaponClasses.BasicGun("sniper", 1000f, 20f, 50f, 0f, 1000f, 1f, 1, 30f, Color.green);
-    public WeaponClasses.BasicGun shotgun = new WeaponClasses.BasicGun("shotgun", 200f, 3f, 22f, 15f, 200f, 3f, 7, 11f, Color.red);
+    public WeaponClasses.BasicGun rifle = new WeaponClasses.BasicGun("rifle", 5f, 5f, 25f, 3.5f, 170f, 15f, 1, 12f, Color.blue);
+    public WeaponClasses.BasicGun sniper = new WeaponClasses.BasicGun("sniper", 1000f, 20f, 50f, 0f, 1000f, 1.5f, 1, 30f, Color.green);
+    public WeaponClasses.BasicGun shotgun = new WeaponClasses.BasicGun("shotgun", 200f, 3f, 22f, 15f, 100f, 7f, 7, 11f, Color.red);
     public Color rifleMaterial;
     public Color sniperMaterial;
     public Color shotgunMaterial;

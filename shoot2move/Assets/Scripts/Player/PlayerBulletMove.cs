@@ -35,7 +35,7 @@ public class PlayerBulletMove : MonoBehaviour
 
     void Move()
     {
-        rb.AddForce(-transform.up * moveForce, ForceMode2D.Impulse);
+        rb.AddForce(transform.right * moveForce, ForceMode2D.Impulse);
     }
 
     void LimitMaxSpeed()
@@ -52,7 +52,7 @@ public class PlayerBulletMove : MonoBehaviour
         {
             Instantiate(damageText, Camera.main.WorldToScreenPoint(collision.transform.position), Quaternion.Euler(0,0,0));
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity.normalized * 0;
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * playerGun.GetComponent<GunControl>().currentWeapon.bulletForce);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * playerGun.GetComponent<GunControl>().currentWeapon.bulletForce);
         }
         Destroy(gameObject);
     }

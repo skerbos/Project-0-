@@ -50,7 +50,7 @@ public class EnemyClasses : MonoBehaviour
             if(Time.time > nextFire)
             {
                 Instantiate(bullet, self.transform.position, self.transform.rotation);
-                nextFire = Time.time + 0.5f;
+                nextFire = Time.time + 1.5f;
             }
         }
         public override void LimitMaxSpeed(Rigidbody2D rb)
