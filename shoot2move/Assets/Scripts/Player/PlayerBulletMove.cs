@@ -50,7 +50,7 @@ public class PlayerBulletMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Instantiate(damageText, Camera.main.WorldToScreenPoint(collision.transform.position), Quaternion.Euler(0,0,0));
+            Instantiate(damageText, Camera.main.WorldToScreenPoint(collision.transform.position) + new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), Quaternion.Euler(0,0,0));
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity.normalized * 0;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * playerGun.GetComponent<GunControl>().currentWeapon.bulletForce);
         }

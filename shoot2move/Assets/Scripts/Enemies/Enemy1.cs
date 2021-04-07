@@ -6,13 +6,17 @@ public class Enemy1 : MonoBehaviour
 {
     private GameObject player;
     private GameObject playerGun;
+    private GameObject playerCamera;
     private Rigidbody2D rb;
     public EnemyClasses.BasicEnemy chaser = new EnemyClasses.BasicEnemy(25f, 5f, 10f, 0f, 0f, 0f, 0f);
+    public GameObject deathParticles;
+    public AudioSource deathSound;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerGun = GameObject.FindGameObjectWithTag("PlayerGun");
+        playerCamera = GameObject.FindGameObjectWithTag("CameraHolder");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -31,7 +35,7 @@ public class Enemy1 : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             chaser.TakeDamage(playerGun);
-            chaser.Death(gameObject);
+            chaser.Death(gameObject, deathParticles, deathSound, playerCamera);
         }
 
     }

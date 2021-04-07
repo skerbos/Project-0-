@@ -11,7 +11,7 @@ public class EnemyClasses : MonoBehaviour
         public abstract void Shoot(GameObject self, GameObject bullet);
         public abstract void LimitMaxSpeed(Rigidbody2D rb);
         public abstract void TakeDamage(GameObject playerGun);
-        public abstract void Death(GameObject self);
+        public abstract void Death(GameObject self, GameObject deathParticles, AudioSource deathSound, GameObject playerCamera);
     }
 
     public class BasicEnemy : EnemyType
@@ -66,10 +66,15 @@ public class EnemyClasses : MonoBehaviour
             health -= playerGun.GetComponent<GunControl>().currentWeapon.bulletDamage;
         }
 
-        public override void Death(GameObject self)
+        public override void Death(GameObject self, GameObject deathParticles, AudioSource deathSound, GameObject playerCamera)
         {
             if (health <= 0)
             {
+                AudioSource.PlayClipAtPoint(deathSound.clip, self.transform.position);
+                GameObject deathParticleClone = Instantiate(deathParticles);
+                deathParticleClone.transform.position = self.transform.position;
+                Destroy(deathParticleClone, 0.5f);
+                playerCamera.GetComponent<CameraControl>().cameraShake(0.2f, 1f);
                 Destroy(self.gameObject);
             }
         }

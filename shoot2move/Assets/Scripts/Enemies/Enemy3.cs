@@ -7,8 +7,11 @@ public class Enemy3 : MonoBehaviour
     public GameObject enemyBullet;
     public int bulletsPerShot = 5;
     public EnemyClasses.BasicEnemy spinShooter = new EnemyClasses.BasicEnemy(20f, 2f, 10f, 2f, 5f, 10f, 0);
+    public GameObject deathParticles;
+    public AudioSource deathSound;
     private Rigidbody2D rb;
     private GameObject playerGun;
+    private GameObject playerCamera;
     private float nextFire;
 
     // Start is called before the first frame update
@@ -16,6 +19,7 @@ public class Enemy3 : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
         playerGun = GameObject.FindGameObjectWithTag("PlayerGun");
+        playerCamera = GameObject.FindGameObjectWithTag("CameraHolder");
         nextFire = Time.time;
     }
 
@@ -48,7 +52,7 @@ public class Enemy3 : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             spinShooter.TakeDamage(playerGun);
-            spinShooter.Death(gameObject);
+            spinShooter.Death(gameObject, deathParticles, deathSound, playerCamera);
         }
 
     }

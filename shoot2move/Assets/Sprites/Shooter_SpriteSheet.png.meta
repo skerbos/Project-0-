@@ -32,6 +32,24 @@ TextureImporter:
   - first:
       213: -7925986343159798591
     second: enemy_bullet
+  - first:
+      213: 4178024340221578246
+    second: enemy_destroy_particle
+  - first:
+      213: 3602655912920985155
+    second: player_lives
+  - first:
+      213: -2017871334279581112
+    second: player_death1
+  - first:
+      213: 4614669985981683407
+    second: player_death2
+  - first:
+      213: 2224050094933345723
+    second: player_death3
+  - first:
+      213: -6271178795721537969
+    second: player_death4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -260,8 +278,8 @@ TextureImporter:
       name: enemy_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 113
+        x: 192
+        y: 63
         width: 16
         height: 15
       alignment: 0
@@ -281,8 +299,8 @@ TextureImporter:
       name: enemy_2
       rect:
         serializedVersion: 2
-        x: 129
-        y: 96
+        x: 193
+        y: 46
         width: 16
         height: 15
       alignment: 0
@@ -302,8 +320,8 @@ TextureImporter:
       name: enemy_3
       rect:
         serializedVersion: 2
-        x: 129
-        y: 80
+        x: 192
+        y: 29
         width: 16
         height: 14
       alignment: 0
@@ -336,6 +354,132 @@ TextureImporter:
       bones: []
       spriteID: 1c4ec512a6d310290800000000000000
       internalID: -7925986343159798591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_destroy_particle
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 28
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60cc7d550035bf930800000000000000
+      internalID: 4178024340221578246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_lives
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ead9117743ff130800000000000000
+      internalID: 3602655912920985155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 69
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84272dd66b41ff3e0800000000000000
+      internalID: -2017871334279581112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 67
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc6581617e99a0040800000000000000
+      internalID: 4614669985981683407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death3
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 63
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb50d2f17c96dde10800000000000000
+      internalID: 2224050094933345723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death4
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 63
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f464e068c1c48f8a0800000000000000
+      internalID: -6271178795721537969
       vertices: []
       indices: 
       edges: []

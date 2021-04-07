@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Canvas
+  - CameraHolder
   layers:
   - Default
   - TransparentFX
