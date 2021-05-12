@@ -6,7 +6,7 @@ public class Enemy3 : MonoBehaviour
 {
     public GameObject enemyBullet;
     public int bulletsPerShot = 5;
-    public EnemyClasses.BasicEnemy spinShooter = new EnemyClasses.BasicEnemy(20f, 2f, 10f, 2f, 5f, 10f, 0);
+    public EnemyClasses.BasicEnemy spinShooter = new EnemyClasses.BasicEnemy(20f, 2f, 10f, 0.5f, 5f, 10f, 0);
     public GameObject deathParticles;
     public AudioSource deathSound;
     private Rigidbody2D rb;

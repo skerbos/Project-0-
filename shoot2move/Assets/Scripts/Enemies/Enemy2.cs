@@ -12,7 +12,7 @@ public class Enemy2 : MonoBehaviour
     public AudioSource deathSound;
     private Rigidbody2D rb;
     public GameObject bullet;
-    public EnemyClasses.BasicEnemy shooter = new EnemyClasses.BasicEnemy(20f, 2f, 10f, 2f, 5f, 10f, 0);
+    public EnemyClasses.BasicEnemy shooter = new EnemyClasses.BasicEnemy(20f, 2f, 10f, 0.5f, 5f, 10f, 0);
     // Start is called before the first frame update
     void Start()
     {

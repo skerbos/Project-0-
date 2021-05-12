@@ -50,7 +50,7 @@ public class EnemyClasses : MonoBehaviour
             if(Time.time > nextFire)
             {
                 Instantiate(bullet, self.transform.position, self.transform.rotation);
-                nextFire = Time.time + 1.5f;
+                nextFire = Time.time + 1/rateOfFire;
             }
         }
         public override void LimitMaxSpeed(Rigidbody2D rb)
@@ -71,10 +71,13 @@ public class EnemyClasses : MonoBehaviour
             if (health <= 0)
             {
                 AudioSource.PlayClipAtPoint(deathSound.clip, self.transform.position);
+
                 GameObject deathParticleClone = Instantiate(deathParticles);
                 deathParticleClone.transform.position = self.transform.position;
                 Destroy(deathParticleClone, 0.5f);
+
                 playerCamera.GetComponent<CameraControl>().cameraShake(0.2f, 1f);
+
                 Destroy(self.gameObject);
             }
         }
